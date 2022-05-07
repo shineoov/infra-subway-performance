@@ -182,47 +182,49 @@ default ↓ [======================================] 1 VUs  15m0s
 
 **데이터를 조회하는데 여러 데이터를 참조하는 페이지 - ( 경로검색 )**  
 ```
-$ k6 run --out influxdb=http://localhost:8086/myk6db load_path.js
-
-          /\      |‾‾| /‾‾/   /‾‾/
-     /\  /  \     |  |/  /   /  /
-    /  \/    \    |     (   /   ‾‾\
-   /          \   |  |\  \ |  (‾)  |
-  / __________ \  |__| \__\ \_____/ .io
-
-  execution: local
-     script: load_path.js
-     output: InfluxDBv1 (http://localhost:8086)
-
-  scenarios: (100.00%) 1 scenario, 110 max VUs, 15m30s max duration (incl. graceful stop):
-           * default: Up to 110 looping VUs for 15m0s over 5 stages (gracefulRampDown: 30s, gracefulStop: 30s)
-
-
-
-running (15m00.9s), 000/110 VUs, 49487 complete and 0 interrupted iterations
-default ✓ [======================================] 000/110 VUs  15m0s
-
-     ✓ http status code 200
-     ✓ stations is json path exist
-
-     checks.........................: 100.00% ✓ 98974     ✗ 0
-     data_received..................: 221 MB  245 kB/s
-     data_sent......................: 4.3 MB  4.8 kB/s
-     http_req_blocked...............: avg=10.37µs min=150ns   med=312ns    max=36.4ms  p(90)=560ns   p(95)=608ns
-     http_req_connecting............: avg=1µs     min=0s      med=0s       max=6.18ms  p(90)=0s      p(95)=0s
-   ✓ http_req_duration..............: avg=4.09ms  min=1.3ms   med=3.06ms   max=2.16s   p(90)=6.9ms   p(95)=9.53ms
-       { expected_response:true }...: avg=4.09ms  min=1.3ms   med=3.06ms   max=2.16s   p(90)=6.9ms   p(95)=9.53ms
-     http_req_failed................: 0.00%   ✓ 0         ✗ 49487
-     http_req_receiving.............: avg=866µs   min=29.19µs med=636.16µs max=45.76ms p(90)=1.48ms  p(95)=2.09ms
-     http_req_sending...............: avg=55.96µs min=16.69µs med=47.67µs  max=20.18ms p(90)=78.21µs p(95)=91.69µs
-     http_req_tls_handshaking.......: avg=7.39µs  min=0s      med=0s       max=24.33ms p(90)=0s      p(95)=0s
-     http_req_waiting...............: avg=3.17ms  min=84.3µs  med=2.24ms   max=2.15s   p(90)=5.43ms  p(95)=7.95ms
-     http_reqs......................: 49487   54.928995/s
-     iteration_duration.............: avg=1s      min=1s      med=1s       max=3.19s   p(90)=1s      p(95)=1.01s
-     iterations.....................: 49487   54.928995/s
-     vus............................: 110     min=1       max=110
-     vus_max........................: 110     min=110     max=110
-```
+    $ k6 run --out influxdb=http://localhost:8086/myk6db load_path.js
+    
+              /\      |‾‾| /‾‾/   /‾‾/
+         /\  /  \     |  |/  /   /  /
+        /  \/    \    |     (   /   ‾‾\
+       /          \   |  |\  \ |  (‾)  |
+      / __________ \  |__| \__\ \_____/ .io
+    
+      execution: local
+         script: load_path.js
+         output: InfluxDBv1 (http://localhost:8086)
+    
+      scenarios: (100.00%) 1 scenario, 110 max VUs, 15m30s max duration (incl. graceful stop):
+               * default: Up to 110 looping VUs for 15m0s over 5 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+    
+    
+    
+    
+    running (15m04.2s), 000/110 VUs, 19282 complete and 0 interrupted iterations
+    default ↓ [======================================] 110/110 VUs  15m0s
+    
+         ✓ http status code 200
+         ✓ stations is json path exist
+    
+         checks.........................: 100.00% ✓ 38564     ✗ 0
+         data_received..................: 99 MB   109 kB/s
+         data_sent......................: 2.3 MB  2.6 kB/s
+         http_req_blocked...............: avg=14.45µs  min=145ns    med=341ns   max=48.59ms p(90)=584ns    p(95)=668ns
+         http_req_connecting............: avg=1.37µs   min=0s       med=0s      max=5.01ms  p(90)=0s       p(95)=0s
+       ✗ http_req_duration..............: avg=793.72ms min=991.94µs med=3.58ms  max=6.49s   p(90)=3.31s    p(95)=3.44s
+           { expected_response:true }...: avg=793.72ms min=991.94µs med=3.58ms  max=6.49s   p(90)=3.31s    p(95)=3.44s
+         http_req_failed................: 0.00%   ✓ 0         ✗ 38564
+         http_req_receiving.............: avg=106.1µs  min=13.93µs  med=59.13µs max=19.5ms  p(90)=137.43µs p(95)=296.05µs
+         http_req_sending...............: avg=71.09µs  min=19.56µs  med=62.06µs max=15.77ms p(90)=92.95µs  p(95)=109.94µs
+         http_req_tls_handshaking.......: avg=10.93µs  min=0s       med=0s      max=30.13ms p(90)=0s       p(95)=0s
+         http_req_waiting...............: avg=793.54ms min=0s       med=3.38ms  max=6.49s   p(90)=3.31s    p(95)=3.44s
+         http_reqs......................: 38564   42.649771/s
+         iteration_duration.............: avg=2.58s    min=1s       med=2.09s   max=7.49s   p(90)=4.44s    p(95)=4.51s
+         iterations.....................: 19282   21.324886/s
+         vus............................: 10      min=1       max=110
+         vus_max........................: 110     min=110     max=110
+         waitingTimeOnCachedData........: avg=2.09ms   min=0s       med=1.7ms   max=45.93ms p(90)=3.16ms   p(95)=4.41ms
+```    
 
 **접속 빈도가 높은 페이지 ( 메인 페이지 )**  
 
@@ -317,43 +319,32 @@ default ✓ [======================================] 000/110 VUs  15m0s
 ```
 $ k6 run --out influxdb=http://localhost:8086/myk6db stress_path.js
 
-          /\      |‾‾| /‾‾/   /‾‾/
-     /\  /  \     |  |/  /   /  /
-    /  \/    \    |     (   /   ‾‾\
-   /          \   |  |\  \ |  (‾)  |
-  / __________ \  |__| \__\ \_____/ .io
+default ✓ [======================================] 330/330 VUs  15m0s
 
-  execution: local
-     script: stress_path.js
-     output: InfluxDBv1 (http://localhost:8086)
+     ✗ http status code 200
+      ↳  9% — ✓ 7835 / ✗ 72654
+     ✗ stations is json path exist
+      ↳  9% — ✓ 7835 / ✗ 72652
 
-  scenarios: (100.00%) 1 scenario, 330 max VUs, 15m30s max duration (incl. graceful stop):
-           * default: Up to 330 looping VUs for 15m0s over 8 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+     checks.........................: 9.73%  ✓ 15670     ✗ 145306
+     data_received..................: 118 MB 116 kB/s
+     data_sent......................: 32 MB  32 kB/s
+     http_req_blocked...............: avg=2.62ms   min=0s              med=0s       max=1.19s p(90)=312ns    p(95)=547ns
+     http_req_connecting............: avg=50.66ms  min=0s              med=18.69ms  max=9m32s p(90)=61.73ms  p(95)=77.12ms
+   ✗ http_req_duration..............: avg=2.02s    min=0s              med=0s       max=9m52s p(90)=263.42ms p(95)=3.5s
+       { expected_response:true }...: avg=3.67s    min=1.01ms          med=838.43ms max=9m52s p(90)=11.78s   p(95)=12.42s
+     http_req_failed................: 84.38% ✓ 74720     ✗ 13826
+     http_req_receiving.............: avg=64.83ms  min=-495490187491ns med=0s       max=9m32s p(90)=57.34µs  p(95)=94.33µs
+     http_req_sending...............: avg=6.51ms   min=0s              med=0s       max=1.22s p(90)=86.1µs   p(95)=140.15µs
+     http_req_tls_handshaking.......: avg=8.38ms   min=0s              med=0s       max=1.53s p(90)=19.18ms  p(95)=71.61ms
+     http_req_waiting...............: avg=1.95s    min=0s              med=0s       max=9m44s p(90)=139.88ms p(95)=3.5s
+     http_reqs......................: 88546  87.240844/s
+     iteration_duration.............: avg=1.23s    min=249.43µs        med=58.71ms  max=9m47s p(90)=937.12ms p(95)=5.17s
+     iterations.....................: 80471  79.284868/s
+     vus............................: 312    min=1       max=330
+     vus_max........................: 330    min=330     max=330
+     waitingTimeOnCachedData........: avg=151.04ms min=0s              med=1.67ms   max=2.81s p(90)=503.86ms p(95)=1.2s
 
-
-running (15m00.5s), 000/330 VUs, 113229 complete and 0 interrupted iterations
-default ↓ [======================================] 001/330 VUs  15m0s
-
-     ✓ http status code 200
-     ✓ stations is json path exist
-
-     checks.........................: 100.00% ✓ 226458     ✗ 0
-     data_received..................: 506 MB  562 kB/s
-     data_sent......................: 9.9 MB  11 kB/s
-     http_req_blocked...............: avg=11.4µs  min=153ns   med=299ns   max=33.78ms  p(90)=466ns   p(95)=561ns
-     http_req_connecting............: avg=1.19µs  min=0s      med=0s      max=13.94ms  p(90)=0s      p(95)=0s
-   ✓ http_req_duration..............: avg=5.48ms  min=1.29ms  med=3.42ms  max=355.51ms p(90)=9.74ms  p(95)=14.62ms
-       { expected_response:true }...: avg=5.48ms  min=1.29ms  med=3.42ms  max=355.51ms p(90)=9.74ms  p(95)=14.62ms
-     http_req_failed................: 0.00%   ✓ 0          ✗ 113229
-     http_req_receiving.............: avg=1.11ms  min=24.18µs med=666µs   max=96.75ms  p(90)=1.98ms  p(95)=2.91ms
-     http_req_sending...............: avg=60.37µs min=14.97µs med=36.67µs max=55.22ms  p(90)=74.71µs p(95)=115.99µs
-     http_req_tls_handshaking.......: avg=8.96µs  min=0s      med=0s      max=17.16ms  p(90)=0s      p(95)=0s
-     http_req_waiting...............: avg=4.3ms   min=0s      med=2.49ms  max=316.72ms p(90)=7.87ms  p(95)=12.17ms
-     http_reqs......................: 113229  125.740318/s
-     iteration_duration.............: avg=1s      min=1s      med=1s      max=1.35s    p(90)=1.01s   p(95)=1.01s
-     iterations.....................: 113229  125.740318/s
-     vus............................: 1       min=1        max=330
-     vus_max........................: 330     min=330      max=330
 ```
 
 **접속 빈도가 높은 페이지 ( 메인 페이지 )**
